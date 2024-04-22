@@ -62,7 +62,7 @@ class VehicleManager(MiddlewareDecorator):
 
 manager = VehicleManager(url="https://test.tspb.su/test-task/")
 
-manager.use(ManagerMiddleware())  # logging middleware
+# manager.use(ManagerMiddleware())  # logging middleware
 
 manager.get(2)
 manager.get_all()
@@ -80,3 +80,10 @@ manager.create(Vehicle(name='Toyota',
                        price=21000,
                        latitude=55.753215,
                        longitude=37.620393))
+
+manager.remove(4)
+
+for i in manager.get_all():
+    print(i.json())
+
+print(manager.filter(params={'id': 5})[0].json())
